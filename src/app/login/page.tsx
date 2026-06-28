@@ -54,7 +54,7 @@ function LoginContent() {
     <div className="min-h-screen bg-[#F8FAFB] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <img src="/logo-name.png" alt="RevuGo" className="h-14 object-contain mx-auto mb-4" />
+          <img src="/logo-name.png" alt="RevuGo" className="h-[124px] object-contain mx-auto mb-4" />
           <h1 className="text-xl font-semibold text-[#111] tracking-[-0.02em]">
             Admin Portal
           </h1>
