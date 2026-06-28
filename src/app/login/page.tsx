@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { Eye, EyeOff, Shield } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 
@@ -54,9 +54,7 @@ function LoginContent() {
     <div className="min-h-screen bg-[#F8FAFB] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#166534] to-[#15803D] flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#166534]/20">
-            <Shield className="w-8 h-8 text-white" />
-          </div>
+          <img src="/logo-name.png" alt="RevuGo" className="h-14 object-contain mx-auto mb-4" />
           <h1 className="text-xl font-semibold text-[#111] tracking-[-0.02em]">
             Admin Portal
           </h1>

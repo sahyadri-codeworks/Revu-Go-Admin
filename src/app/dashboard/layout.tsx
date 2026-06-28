@@ -11,7 +11,6 @@ import {
   Receipt,
   BarChart3,
   LogOut,
-  Shield,
   Menu,
   X,
   MessageSquareWarning,
@@ -64,13 +63,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className="hidden lg:flex flex-col w-[260px] bg-white h-screen fixed left-0 top-0 z-40 border-r border-[#E5E7EB]">
         <div className="px-5 pt-6 pb-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#166534] to-[#15803D] flex items-center justify-center shadow-lg shadow-[#166534]/20">
-              <Shield className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p className="text-[14px] font-bold text-[#111]">RevuGo</p>
-              <p className="text-[10px] text-[#166534] font-semibold uppercase tracking-wider">Admin Portal</p>
-            </div>
+            <img src="/logo-name.png" alt="RevuGo" className="h-9 object-contain" />
+            <p className="text-[10px] text-[#166534] font-semibold uppercase tracking-wider">Admin</p>
           </div>
         </div>
 
@@ -119,8 +113,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E5E7EB] h-14 flex items-center justify-between px-4">
         <div className="flex items-center gap-2.5">
-          <Shield className="w-5 h-5 text-[#166534]" />
-          <span className="font-bold text-sm text-[#111]">RevuGo Admin</span>
+          <img src="/logo-name.png" alt="RevuGo" className="h-7 object-contain" />
+          <span className="text-[10px] text-[#166534] font-semibold uppercase tracking-wider">Admin</span>
         </div>
         <button onClick={() => setMobileOpen(!mobileOpen)} className="w-9 h-9 rounded-lg border border-[#E5E7EB] flex items-center justify-center">
           {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
