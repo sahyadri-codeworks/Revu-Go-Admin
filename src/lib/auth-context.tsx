@@ -43,15 +43,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const fetchProfile = useCallback(
-    async (userId: string) => {
-      const { data } = await supabase
-        .from("profiles")
-        .select("id, full_name, email, avatar_url")
-        .eq("id", userId)
-        .single();
-      setProfile(data as Profile | null);
+    async (_userId: string) => {
+      try {
+        const res = await fetch("/api/super-admin?action=admin-profile");
+        if (res.ok) {
+          const data = await res.json();
+          setProfile(data.profile as Profile | null);
+        }
+      } catch {}
     },
-    [supabase]
+    []
   );
 
   useEffect(() => {

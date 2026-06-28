@@ -30,6 +30,31 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ isAdmin: true });
   }
 
+  if (action === "admin-profile") {
+    const supabase = await createClient();
+    const { data: { user: authUser } } = await supabase.auth.getUser();
+
+    const { data } = await admin
+      .from("admin_profiles")
+      .select("id, full_name, email, avatar_url, role, last_login_at")
+      .eq("email", adminEmail)
+      .single();
+
+    if (!data && authUser) {
+      const { data: created } = await admin.from("admin_profiles").insert({
+        id: authUser.id,
+        full_name: authUser.user_metadata?.full_name || authUser.user_metadata?.name || "",
+        email: adminEmail,
+      }).select().single();
+      return NextResponse.json({ profile: created });
+    }
+
+    if (data) {
+      await admin.from("admin_profiles").update({ last_login_at: new Date().toISOString() }).eq("id", data.id);
+    }
+    return NextResponse.json({ profile: data });
+  }
+
   if (action === "overview") {
     const [businesses, reviews, campaigns, coupons, plans, subscriptions] = await Promise.all([
       admin.from("businesses").select("id, is_active, plan, created_at"),
