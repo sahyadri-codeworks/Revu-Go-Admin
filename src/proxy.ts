@@ -32,7 +32,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isPublicRoute =
-    pathname === "/login" ||
+    pathname.startsWith("/admin/login") ||
     pathname.startsWith("/auth/") ||
     pathname.startsWith("/api/");
 
@@ -42,13 +42,13 @@ export async function proxy(request: NextRequest) {
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/admin/login";
     return NextResponse.redirect(url);
   }
 
   if (!user) {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/admin/login";
     url.searchParams.set("redirect", pathname);
     return NextResponse.redirect(url);
   }

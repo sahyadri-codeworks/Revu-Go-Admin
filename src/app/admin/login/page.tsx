@@ -16,8 +16,8 @@ export default function AdminLoginPage() {
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const rawRedirect = searchParams.get("redirect") || "/dashboard";
-  const redirectTo = rawRedirect.startsWith("/") && !rawRedirect.startsWith("//") ? rawRedirect : "/dashboard";
+  const rawRedirect = searchParams.get("redirect") || "/super-admin";
+  const redirectTo = rawRedirect.startsWith("/super-admin") ? rawRedirect : "/super-admin";
   const { signInWithEmail } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,10 @@ function LoginContent() {
     if (adminData.isAdmin) {
       router.replace(redirectTo);
     } else {
-      setError("Access denied. This portal is for administrators only.");
+      const { createClient } = await import("@/lib/supabase/client");
+      const supabase = createClient();
+      await supabase.auth.signOut();
+      setError("Please use the correct login portal.");
       setLoading(false);
     }
   };

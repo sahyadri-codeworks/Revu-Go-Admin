@@ -177,7 +177,7 @@ export default function AccountsPage() {
         return;
       }
       if (data.accessToken) {
-        const adminUrl = window.location.origin + "/dashboard/accounts";
+        const adminUrl = window.location.origin + "/super-admin/accounts";
         const hash = `#access_token=${data.accessToken}&refresh_token=${data.refreshToken}&business_name=${encodeURIComponent(a.name)}&admin_url=${encodeURIComponent(adminUrl)}`;
         window.open(`${MAIN_APP_URL}/impersonate-session${hash}`, "_blank");
       }

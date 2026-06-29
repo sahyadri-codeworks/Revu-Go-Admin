@@ -17,12 +17,12 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/dashboard/accounts", label: "Accounts", icon: Users },
-  { href: "/dashboard/issues", label: "Customer Issues", icon: MessageSquareWarning },
-  { href: "/dashboard/plans", label: "Plans & Billing", icon: CreditCard },
-  { href: "/dashboard/subscriptions", label: "Subscriptions", icon: Receipt },
-  { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/super-admin", label: "Overview", icon: LayoutDashboard },
+  { href: "/super-admin/accounts", label: "Accounts", icon: Users },
+  { href: "/super-admin/issues", label: "Customer Issues", icon: MessageSquareWarning },
+  { href: "/super-admin/plans", label: "Plans & Billing", icon: CreditCard },
+  { href: "/super-admin/subscriptions", label: "Subscriptions", icon: Receipt },
+  { href: "/super-admin/analytics", label: "Analytics", icon: BarChart3 },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -35,15 +35,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user) { router.replace("/login"); return; }
+    if (!user) { router.replace("/admin/login"); return; }
 
     fetch("/api/super-admin?action=check-admin")
       .then((r) => r.json())
       .then((d) => {
         if (d.isAdmin) setAuthorized(true);
-        else router.replace("/login");
+        else router.replace("/admin/login");
       })
-      .catch(() => router.replace("/login"))
+      .catch(() => router.replace("/admin/login"))
       .finally(() => setChecking(false));
   }, [user, authLoading, router]);
 
